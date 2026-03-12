@@ -26,6 +26,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>6.1.4</version>
         </dependency>
         <dependency>
             <groupId>patmal.course.enigma</groupId>
