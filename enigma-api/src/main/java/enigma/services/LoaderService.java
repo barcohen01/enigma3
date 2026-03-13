@@ -84,21 +84,27 @@ public class LoaderService {
             rotorRepository.save(rotorEntity);
         });
 
+        String abc = newEngine.getAbc();
+
         newEngine.getAllReflectors().forEach(reflector -> {
             MachineReflectorEntity reflectorEntity = new MachineReflectorEntity();
             reflectorEntity.setId(UUID.randomUUID());
             reflectorEntity.setMachine_id(machineUuid);
             reflectorEntity.setReflector_id(mapStringToEnum(reflector.getId()));
 
-            StringBuilder input = new StringBuilder();
-            StringBuilder output = new StringBuilder();
+            StringBuilder inputBuilder = new StringBuilder();
+            StringBuilder outputBuilder = new StringBuilder();
+
             reflector.getBTEReflect().forEach(reflect -> {
-                input.append(reflect.getInput());
-                output.append(reflect.getOutput());
+                char inChar = abc.charAt(reflect.getInput() - 1);
+                char outChar = abc.charAt(reflect.getOutput() - 1);
+
+                inputBuilder.append(inChar);
+                outputBuilder.append(outChar);
             });
 
-            reflectorEntity.setInput(input.toString());
-            reflectorEntity.setOutput(output.toString());
+            reflectorEntity.setInput(inputBuilder.toString());
+            reflectorEntity.setOutput(outputBuilder.toString());
             reflectorRepository.save(reflectorEntity);
         });
 
