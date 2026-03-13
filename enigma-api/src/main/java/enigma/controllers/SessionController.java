@@ -10,6 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/session")
+@CrossOrigin(origins = "*")
 public class SessionController {
 
     @Autowired
